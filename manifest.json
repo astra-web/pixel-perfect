@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Pxel Perfect",
+  "description": "Design your websites pixel by pixel",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "src/background/index.js"
+  },
+  "action": {
+    "default_title": "Action Button"
+  },
+  "web_accessible_resources": [
+    {
+        "resources": [ "src/dialog/index.html" ],
+        "matches": [ "https://*/*", "http://*/*" ]
+    }
+  ]
+}
