@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@webcomponents/custom-elements": "^1.6.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0"
+  }
+}
