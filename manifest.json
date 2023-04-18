@@ -15,7 +15,7 @@
   },
   "web_accessible_resources": [
     {
-        "resources": [ "src/dialog/index.html", "src/dialog/insert.js", "src/dialog/component.js" ],
+        "resources": [ "src/dialog/index.html", "build-dev/content.js" ],
         "matches": [ "https://*/*", "http://*/*" ]
     }
   ]

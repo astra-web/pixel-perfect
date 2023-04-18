@@ -5,14 +5,12 @@ const ChromeExtensionReloader = require('webpack-chrome-extension-reloader');
 
 const buildProdFolder = path.resolve(__dirname, 'build-prod');
 const buildDevFolder = path.resolve(__dirname, 'build-dev');
-const buildE2eFolder = path.resolve(__dirname, 'build-e2e');
 const conf = {
   mode: 'development',
 
   entry: {
-    background: './src/background.js',
-    content: './src/content.js',
-    e2eTestCommandsBridge: './src/e2eTestCommandsBridge.js',
+    content: './src/dialog/insert.js',
+    background: './src/background/index.js',
   },
 
   output: {
@@ -20,7 +18,7 @@ const conf = {
     path: buildDevFolder,
   },
 
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
 };
 
 module.exports = (env) => {
@@ -44,21 +42,11 @@ module.exports = (env) => {
       }),
       env.watch ? new ChromeExtensionReloader({
         entries: {
-          contentScript: 'content',
-          background: 'background',
+            contentScript: 'content',
+            background: 'background',
         },
       }) : () => {
       },
-    ];
-  } else if (env.e2e) {
-    conf.mode = 'production';
-    conf.devtool = 'source-map';
-    conf.output.path = buildE2eFolder;
-    conf.plugins = [
-      new CopyWebpackPlugin(copyWebpackPluginOptions),
-      new webpack.DefinePlugin({
-        E2E: 'true',
-      }),
     ];
   }
   return conf;
