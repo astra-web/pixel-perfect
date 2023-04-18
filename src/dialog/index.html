@@ -1,28 +1,68 @@
 
 <style>
-#pixel-perfect-dialog {
-    background: #fff;
-    width: 400px;
-    height: 550px;
+#pixel-perfect--dialog {
+    --pixel-perfect-theme: dark;
+    --pixel-perfect-color: #fff;
+    --pixel-perfect-background: 0, 0, 0;
+
+    width: 350px;
+    height: 500px;
 
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 20px;
 
     position: fixed;
     top: 15px;
     right: 15px;
 
+    color: var(--pixel-perfect-color);
     z-index: 999999999 /* bongers */;
 
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(var(--pixel-perfect-background), 0.2);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(var(--pixel-perfect-background), 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(var(--pixel-perfect-background), 0.3);
+
+    transition: .1s;
+    animation: pixel-perfect--entry-animation .5s;
+
+    display: flex;
+    flex-direction: column;
 }
+
+#pixel-perfect--dialog .pixel-perfect--text {
+    color: var(--pixel-perfect-color);
+    font-weight: 600;
+}
+
+#pixel-perfect--dialog .pixel-perfect--footer {
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+
+    margin-top: auto;
+
+}
+
+/* keyframes */
+
+@keyframes pixel-perfect--entry-animation {
+    from {
+        transform: translateX(500px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 </style>
 
-<div id="pixel-perfect-dialog">
-
+<div id="pixel-perfect--dialog">
+    <div class="footer pixel-perfect--footer">
+        <a href="https://github.com/mauro-balades/pixel-perfect" target="_blank" class="pixel-perfect--text">
+            Source code
+        </a>
+    </div>
 </div>
