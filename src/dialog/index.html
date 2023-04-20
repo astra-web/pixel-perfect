@@ -13,6 +13,8 @@
             --pixel-perfect-secondary-background: #212121;
             --pixel-perfect-tertiary-background: #303030;
 
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
             width: 350px;
             /* height: min-content; */
 
@@ -212,6 +214,14 @@
             opacity: 0; transition: .5s; }
         #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter.active { opacity: 1; }
 
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter {
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
         /* keyframes */
 
         @keyframes pixel-perfect--entry-animation {
@@ -366,7 +376,86 @@
                 </span>
             </a>
             <div id="pixel-perfect-section--converter">
-                hello
+                <style scoped>
+                    select {
+                        border: transparent;
+                        background-color: transparent;
+                        color: var(--pixel-perfect-color);
+                        font-weight: inherit;
+
+                        margin-left: 2px;
+                        outline: none;
+                    }
+
+                    option {
+                        color: black;
+                    }
+
+                    input {
+                        background: transparent;
+                        color: var(--pixel-perfect-color);
+
+                        border: 0;
+                        outline: none;
+
+                        position: relative;
+                        font-weight: inherit;
+                        font-size: 20px;
+
+                        text-align: right;
+                        -moz-appearance: textfield;
+                        width: 50%;
+                    }
+
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                </style>
+                <div class="pixel-perfect--text">
+                    <div style="display: flex; align-items: end;">
+                        <input id="pixel-perfect--unit-input" type="number" style="margin: 0;" value="0">
+                        <select id="pixel-pefect--select-meassure-1">
+                            <option label="(px)"    value="px"></option>
+                            <option label="(pt)"    value="pt"></option>
+                            <option label="(em)"    value="em"></option>
+                            <option label="(rem)"   value="em"></option>
+                            <option label="(vw)"    value="vw"></option>
+                            <option label="(vh)"    value="vh"></option>
+                            <option label="(vmin)"  value="in"></option>
+                            <option label="(vmax)"  value="ax"></option>
+                            <option label="(in)"    value="in"></option>
+                            <option label="(cm)"    value="cm"></option>
+                            <option label="(mm)"    value="mm"></option>
+                            <option label="(pc)"    value="pc"></option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin: 0 5px 0 10px; width: 20; height: 20;">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="pixel-perfect--text">
+                    <div style="display: flex; align-items: end;">
+                        <input id="pixel-perfect--unit-result" type="number" style="margin: 0; user-select: all;" readonly value="0">
+                        <select id="pixel-pefect--select-meassure-2">
+                            <option label="(px)"    value="px"></option>
+                            <option label="(pt)"    value="pt"></option>
+                            <option label="(em)"    value="em"></option>
+                            <option label="(rem)"   value="em"></option>
+                            <option label="(vw)"    value="vw"></option>
+                            <option label="(vh)"    value="vh"></option>
+                            <option label="(vmin)"  value="in"></option>
+                            <option label="(vmax)"  value="ax"></option>
+                            <option label="(in)"    value="in"></option>
+                            <option label="(cm)"    value="cm"></option>
+                            <option label="(mm)"    value="mm"></option>
+                            <option label="(pc)"    value="pc"></option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="pixel-perfect--footer">
