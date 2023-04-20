@@ -26,6 +26,7 @@
     "start": "rm -rf build-dev && webpack --env.development --env.watch --watch"
   },
   "dependencies": {
+    "@easylogic/colorpicker": "^1.10.11",
     "@webcomponents/custom-elements": "^1.6.0",
     "webpack": "^4.46.0"
   }

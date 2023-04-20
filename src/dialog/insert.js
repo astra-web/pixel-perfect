@@ -1,6 +1,7 @@
 import '@webcomponents/custom-elements';
+import EasyLogicColorPicker from '@easylogic/colorpicker';
 
-if (!document.getElementById("pixel-perfect-dialog")) {
+if (!document.getElementById("pixel-perfect--dialog")) {
     class PixelPerfectRoot extends HTMLElement {
         constructor() {
             super();
@@ -50,12 +51,19 @@ if (!document.getElementById("pixel-perfect-dialog")) {
                  0 : parseInt(input.value), unit1.options[unit1.selectedIndex].value, unit2.options[unit2.selectedIndex].value);
             }
 
+            this.createLinks(shadowRoot, [
+                chrome.runtime.getURL('src/styles/colorpicker.css'),
+                "https://fonts.googleapis.com/css?family=Inter"
+            ])
+
+            shadowRoot.createElement
+
             shadowRoot.getElementById("pixel-perfect--unit-input").addEventListener("input", convertUnit.bind(this));
             shadowRoot.getElementById("pixel-pefect--select-meassure-1").addEventListener("change", convertUnit.bind(this));
             shadowRoot.getElementById("pixel-pefect--select-meassure-2").addEventListener("change", convertUnit.bind(this));
 
-            shadowRoot.getElementById("pixel-perfect--go-home").addEventListener("click", goHome.bind(this))
-
+            shadowRoot.getElementById("pixel-perfect--go-home").addEventListener("click", goHome.bind(this));
+            this.createColorDialog(shadowRoot);
         }
 
         getAllElementsWithAttribute(r, attribute) {
@@ -70,6 +78,34 @@ if (!document.getElementById("pixel-perfect-dialog")) {
                 }
             }
             return matchingElements;
+        }
+
+        createLinks(r, links) {
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+
+                let l = document.createElement("link");
+                l.href = link;
+                l.rel = "stylesheet";
+
+                r.prepend(l);
+            }
+        }
+
+        createColorDialog(r) {
+            const options = {
+                color: "#fff",
+                container: r.getElementById('pixel-pefect--color-picker'),
+                onChange: function(color) {
+                //   updateColor(color);
+                },
+                type: "chromedevtool",
+                position: "inline",
+                paletteWidth: 400,
+            };
+
+                console.log(options.container)
+            let picker = new EasyLogicColorPicker.create(options);
         }
 
         convertUnit(value, fromUnit, toUnit) {
@@ -97,7 +133,7 @@ if (!document.getElementById("pixel-perfect-dialog")) {
             var allElements = r.querySelectorAll('*');
             for (var i = 0, n = allElements.length; i < n; i++)
             {
-                if (allElements[i].id === id)
+                if (allElements[i].id.startsWith(id))
                 {
                     // Element exists with attribute. Add to array.
                     matchingElements.push(allElements[i]);

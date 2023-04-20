@@ -1,5 +1,5 @@
 <div id="--inner-pixel-perfect-component">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
     <style scoped>
         body {
             width: 100%;
@@ -210,9 +210,12 @@
             margin-bottom: auto;
         }
 
-        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter {
-            opacity: 0; transition: .5s; }
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter:not(.active) {
+            opacity: 0; transition: .5s; pointer-events: none; animation: pixel-perfect--entry-disappear 1s forwards; }
         #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter.active { opacity: 1; }
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--color:not(.active) {
+            opacity: 0; transition: .5s; pointer-events: none; animation: pixel-perfect--entry-disappear 1s forwards;  }
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--color.active { opacity: 1; }
 
         #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter {
             padding: 5px;
@@ -220,6 +223,17 @@
             justify-content: center;
             align-items: center;
             margin: 15px 0;
+        }
+
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--color {
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+
+            align-items: center;
+            height: -webkit-fill-available;
         }
 
         /* keyframes */
@@ -231,6 +245,12 @@
             to {
                 transform: translateX(0);
             }
+        }
+
+        @keyframes pixel-perfect--entry-disappear {
+            0% {visibility:visible;}
+            90% {visibility:visible;}
+            100% {visibility:hidden; position: absolute;}
         }
 
         @keyframes pixel-perfect--move-in {
@@ -293,7 +313,7 @@
                             Unit conversor
                         </div>
                     </div>
-                    <div>
+                    <div data-pixel-perfect-section="color">
                         <svg class="pixel-perfect--tertiary-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.61 2.277H12l-.75.75 1.5 1.5M15 11.25l-8.47 8.47c-.34.34-.8.53-1.28.53s-.94.19-1.28.53l-.97.97-.75-.75.97-.97c.34-.34.53-.8.53-1.28s.19-.94.53-1.28L12.75 9M15 11.25L12.75 9" />
                         </svg>
@@ -375,6 +395,9 @@
                     Go back
                 </span>
             </a>
+            <div id="pixel-perfect-section--color">
+                <div id="pixel-pefect--color-picker"></div>
+            </div>
             <div id="pixel-perfect-section--converter">
                 <style scoped>
                     select {
