@@ -14,7 +14,9 @@
             --pixel-perfect-tertiary-background: #303030;
 
             width: 350px;
-            height: 550px;
+            /* height: min-content; */
+
+            overflow-x: hidden;
 
             border-radius: 10px;
             padding: 10px 15px;
@@ -28,7 +30,10 @@
         
             background: var(--pixel-perfect-background);
 
-            transition: .1s;
+            -webkit-transition: all .5s ease;
+               -moz-transition: all .5s ease;
+                    transition: all .5s ease;
+
             animation: pixel-perfect--entry-animation .5s;
 
             display: flex;
@@ -63,7 +68,8 @@
 
         #pixel-perfect--dialog a::before {
             width: 100%;
-            height: 1px;
+            height: 2px;
+            border-radius: 5px;
 
             content: '';
             bottom: -5px;
@@ -80,7 +86,6 @@
         }
         
         #pixel-perfect--dialog .pixel-perfect--body {
-        
         }
 
         #pixel-perfect--dialog .pixel-perfect--inspect {
@@ -89,6 +94,7 @@
             align-items: center;
 
             padding-left: 10px;
+            margin: 25px 0 15px 0 !important;
         }
 
         #pixel-perfect--dialog .pixel-perfect--body > .pixel-perfect--icons:first-child {
@@ -163,7 +169,49 @@
         #pixel-perfect--dialog .pixel-perfect--tertiary-background {
             background: var(--pixel-perfect-tertiary-background);
         }
-        
+
+        /* dialogs */
+
+        #pixel-perfect--dialog #pixel-perfect--sections {
+            opacity: 0;
+            transform: translateX(500px);
+            animation: pixel-perfect--move-out-right .5s forwards;
+            transition: .5s;
+            overflow: hidden;
+        }
+
+        #pixel-perfect--dialog #pixel-perfect--sections.active {
+            animation: pixel-perfect--move-in .5s forwards;
+            opacity: 1;
+            transition: .5s;
+        }
+
+        #pixel-perfect--home {
+            animation: pixel-perfect--move-in .5s forwards;
+            overflow: hidden;
+        }
+
+        #pixel-perfect--home.active {
+            animation: pixel-perfect--move-in-left .5s forwards;
+        }
+
+        #pixel-perfect--home.remove {
+            animation: pixel-perfect--move-out .5s forwards;
+        }
+
+        #pixel-perfect--dialog #pixel-perfect--sections > a:first-child {
+            display: flex;
+            align-items: center;
+            color: var(--pixel-perfect-color);
+
+            width: fit-content;
+            margin-bottom: auto;
+        }
+
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter {
+            opacity: 0; transition: .5s; }
+        #pixel-perfect--dialog #pixel-perfect--sections #pixel-perfect-section--converter.active { opacity: 1; }
+
         /* keyframes */
 
         @keyframes pixel-perfect--entry-animation {
@@ -172,6 +220,46 @@
             }
             to {
                 transform: translateX(0);
+            }
+        }
+
+        @keyframes pixel-perfect--move-in {
+            from {
+                transform: translateX(500px);
+                height: 0;
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pixel-perfect--move-in-left {
+            from {
+                transform: translateX(-500px);
+                height: 0;
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pixel-perfect--move-out-right {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(500px);
+                height: 0;
+            }
+        }
+
+        @keyframes pixel-perfect--move-out {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-500px);
+                height: 0;
             }
         }
 
@@ -184,88 +272,102 @@
                 Pixel Perfect
             </h3>
         </div>
-        <div class="pixel-perfect--body">
-            <div class="pixel-perfect--glass-element pixel-perfect--icons">
-                <div>
-                    <svg class="pixel-perfect--tertiary-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                    </svg>
-                    <div class="pixel-perfect--text">
-                        Unit conversor
+        <div id="pixel-perfect--home">
+            <div class="pixel-perfect--body">
+                <div class="pixel-perfect--glass-element pixel-perfect--icons">
+                    <div data-pixel-perfect-section="converter">
+                        <svg class="pixel-perfect--tertiary-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                        <div class="pixel-perfect--text">
+                            Unit conversor
+                        </div>
+                    </div>
+                    <div>
+                        <svg class="pixel-perfect--tertiary-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.61 2.277H12l-.75.75 1.5 1.5M15 11.25l-8.47 8.47c-.34.34-.8.53-1.28.53s-.94.19-1.28.53l-.97.97-.75-.75.97-.97c.34-.34.53-.8.53-1.28s.19-.94.53-1.28L12.75 9M15 11.25L12.75 9" />
+                        </svg>
+                        <div class="pixel-perfect--text">
+                            Color picker
+                        </div>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                        </svg>
+                        <div class="pixel-perfect--text">
+                            Generators
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <svg class="pixel-perfect--tertiary-background" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.61 2.277H12l-.75.75 1.5 1.5M15 11.25l-8.47 8.47c-.34.34-.8.53-1.28.53s-.94.19-1.28.53l-.97.97-.75-.75.97-.97c.34-.34.53-.8.53-1.28s.19-.94.53-1.28L12.75 9M15 11.25L12.75 9" />
-                    </svg>
-                    <div class="pixel-perfect--text">
-                        Color picker
+                <div class="pixel-perfect--glass-element pixel-perfect--icons">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                        <div style="margin: 10px 20px;">
+                            <div class="pixel-perfect--text">
+                                Change device
+                            </div>
+                            <div class="pixel-perfect--text">
+                                View website as another device.
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-                    <div class="pixel-perfect--text">
-                        Generators
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                        </svg>
+                        <div style="margin: 10px 20px;">
+                            <div class="pixel-perfect--text">
+                                Grid Overlay
+                            </div>
+                            <div class="pixel-perfect--text">
+                                Overlays a CSS grid on any webpage
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <div style="margin: 10px 20px;">
+                            <div class="pixel-perfect--text">
+                                Assets export
+                            </div>
+                            <div class="pixel-perfect--text">
+                                Export or view assets included here.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="pixel-perfect--glass-element pixel-perfect--icons">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z" />
-                    </svg>
-                    <div style="margin: 10px 20px;">
-                        <div class="pixel-perfect--text">
-                            Change device
-                        </div>
-                        <div class="pixel-perfect--text">
-                            View website as another device.
-                        </div>
+            <div class="pixel-perfect--inspect">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                </svg>
+                <span>
+                    <div class="pixel-perfect--text" style="margin-left: 10px;">
+                        Inspect element
                     </div>
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
-                    </svg>
-                    <div style="margin: 10px 20px;">
-                        <div class="pixel-perfect--text">
-                            Grid Overlay
-                        </div>
-                        <div class="pixel-perfect--text">
-                            Overlays a CSS grid on any webpage
-                        </div>
+                    <div class="pixel-perfect--text" style="margin-left: 10px;">
+                        Select, inspect and edit an element
                     </div>
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                    <div style="margin: 10px 20px;">
-                        <div class="pixel-perfect--text">
-                            Assets export
-                        </div>
-                        <div class="pixel-perfect--text">
-                            Export or view assets included here.
-                        </div>
-                    </div>
-                </div>
+                </span>
             </div>
         </div>
-        <div class="pixel-perfect--inspect">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
-            </svg>
-
-            <span>
-                <div class="pixel-perfect--text" style="margin-left: 10px;">
-                    Inspect element
-                </div>
-                <div class="pixel-perfect--text" style="margin-left: 10px;">
-                    Select, inspect and edit an element
-                </div>
-            </span>
+        <div id="pixel-perfect--sections">
+            <a id="pixel-perfect--go-home" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" width="20" height="20" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+                <span style="margin-left: 10px;">
+                    Go back
+                </span>
+            </a>
+            <div id="pixel-perfect-section--converter">
+                hello
+            </div>
         </div>
         <div class="pixel-perfect--footer">
             <a href="https://github.com/mauro-balades/pixel-perfect" target="_blank" class="pixel-perfect--text">
@@ -281,4 +383,5 @@
     </div>
 </div>
 
-<pixel-perfect-root></pixel-perfect-root>
+<pixel-perfect-root>
+</pixel-perfect-root>
