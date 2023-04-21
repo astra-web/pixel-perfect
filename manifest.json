@@ -15,7 +15,7 @@
   },
   "web_accessible_resources": [
     {
-        "resources": [ "src/dialog/index.html", "build-dev/content.js", "src/styles/colorpicker.css" ],
+        "resources": [ "src/dialog/index.html", "build-dev/content.js", "src/styles/colorpicker.css", "src/vendor/EasyLogicColorPicker.js" ],
         "matches": [ "https://*/*", "http://*/*" ]
     }
   ]

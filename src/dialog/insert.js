@@ -1,5 +1,5 @@
 import '@webcomponents/custom-elements';
-import EasyLogicColorPicker from '@easylogic/colorpicker';
+import EasyLogicColorPicker from '../vendor/EasyLogicColorPicker.js'
 
 if (!document.getElementById("pixel-perfect--dialog")) {
     class PixelPerfectRoot extends HTMLElement {
@@ -99,13 +99,13 @@ if (!document.getElementById("pixel-perfect--dialog")) {
                 onChange: function(color) {
                 //   updateColor(color);
                 },
-                type: "chromedevtool",
+                type: "default",
                 position: "inline",
                 paletteWidth: 400,
             };
 
                 console.log(options.container)
-            let picker = new EasyLogicColorPicker.create(options);
+            let picker = new EasyLogicColorPicker(options);
         }
 
         convertUnit(value, fromUnit, toUnit) {
