@@ -31,15 +31,14 @@
             z-index: 999999999 /* bongers */;
         
             background: var(--pixel-perfect-background);
-
-            -webkit-transition: all .5s ease;
-               -moz-transition: all .5s ease;
-                    transition: all .5s ease;
-
             animation: pixel-perfect--entry-animation .5s;
 
-            display: flex;
-            flex-direction: column;
+            transition: .5s;
+            max-height: 600px;
+            height: auto;
+            transition: max-height 0.15s ease-out;
+
+            display: inline-block;
         }
 
         #pixel-perfect--dialog * {
@@ -70,13 +69,13 @@
 
         #pixel-perfect--dialog a::before {
             width: 100%;
-            height: 2px;
+            height: 1px;
             border-radius: 5px;
 
             content: '';
             bottom: -5px;
-            transform: translateY(5px);
-            transition: .2s;
+            transform: translateY(2px);
+            transition: .1s;
             position: absolute;
             opacity: 0;
             background: #fff;
@@ -84,7 +83,7 @@
 
         #pixel-perfect--dialog a:hover::before {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
         
         #pixel-perfect--dialog .pixel-perfect--body {
@@ -335,7 +334,7 @@
         <div style="padding: 0 10px;">
             <!-- TODO: header -->
             <h3 class="pixel-perfect--text">
-                Pixel Perfect
+                Pixel Perfect <span style="font-size: 10px; opacity: .7;">v1.0.0</span>
             </h3>
         </div>
         <div id="pixel-perfect--home">
@@ -380,16 +379,16 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div id="pixel-perfect--site-dimensions">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
                         </svg>
                         <div style="margin: 10px 20px;">
                             <div class="pixel-perfect--text">
-                                Grid Overlay
+                                Site dimensions
                             </div>
                             <div class="pixel-perfect--text">
-                                Overlays a CSS grid on any webpage
+                                Display a real-time ruler overlay for the website
                             </div>
                         </div>
                     </div>
@@ -437,7 +436,7 @@
             <div id="pixel-perfect-section--devices">
                 <div class="pixel-perfect--glass-element" style="border-radius: 10px; padding: 10px 0 30px 0; margin: 10px 0;">
                     <div class="pixel-perfect--icons">
-                        <div>
+                        <div data-pixel-perfect-width="750">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                             </svg>
@@ -448,7 +447,7 @@
                                 750 x 1334
                             </div>
                         </div>
-                        <div>
+                        <div data-pixel-perfect-width="800" data-pixel-perfect-height="1280">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pixel-perfect--tertiary-background">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z" />
                             </svg>
@@ -459,7 +458,7 @@
                                 800 x 1280
                             </div>
                         </div>
-                        <div>
+                        <div data-pixel-perfect-width="1440" data-pixel-perfect-height="900">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="pixel-perfect--tertiary-background" stroke-width="2" stroke="currentColor" style="transform: rotate(180deg);">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                             </svg>
@@ -472,7 +471,7 @@
                         </div>
                     </div>
                     <div class="pixel-perfect--icons">
-                        <div>
+                        <div data-pixel-perfect-width="1920" data-pixel-perfect-height="1080">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="pixel-perfect--tertiary-background" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z" />
                             </svg>
@@ -483,7 +482,7 @@
                                 1920 x 1080
                             </div>
                         </div>
-                        <div>
+                        <div data-pixel-perfect-width="1366" data-pixel-perfect-height="768">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="pixel-perfect--tertiary-background" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                             </svg>
@@ -494,7 +493,7 @@
                                 1366 x 768
                             </div>
                         </div>
-                        <div>
+                        <div data-pixel-perfect-width="360" data-pixel-perfect-height="360">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="pixel-perfect--tertiary-background" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -607,3 +606,47 @@
 
 <pixel-perfect-root>
 </pixel-perfect-root>
+
+<style>
+#ruler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#ruler .horizontal,
+#ruler .vertical {
+  position: absolute;
+  background-color: red;
+  opacity: 0.5;
+}
+
+#ruler .horizontal {
+  height: 1px;
+}
+
+#ruler .vertical {
+  width: 1px;
+}
+
+#ruler .marker {
+  position: absolute;
+  width: auto;
+  height: auto;
+  border: 2px solid red;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#ruler .marker .label {
+  color: red;
+}
+</style>

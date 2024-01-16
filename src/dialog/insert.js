@@ -1,5 +1,5 @@
 import '@webcomponents/custom-elements';
-import EasyLogicColorPicker from '../vendor/EasyLogicColorPicker.js'
+import EasyLogicColorPicker from '../vendor/EasyLogicColorPicker.js';
 
 if (!document.getElementById("pixel-perfect--dialog")) {
     class PixelPerfectRoot extends HTMLElement {
@@ -64,6 +64,8 @@ if (!document.getElementById("pixel-perfect--dialog")) {
 
             shadowRoot.getElementById("pixel-perfect--go-home").addEventListener("click", goHome.bind(this));
             this.createColorDialog(shadowRoot);
+            this.activateScreenResizeListener(shadowRoot);
+            this.setRulers(shadowRoot);
         }
 
         getAllElementsWithAttribute(r, attribute) {
@@ -140,6 +142,29 @@ if (!document.getElementById("pixel-perfect--dialog")) {
                 }
             }
             return matchingElements;
+        }
+
+        activateScreenResizeListener(r) {
+            let elements = r.querySelectorAll("#pixel-perfect-section--devices div[data-pixel-perfect-width]");
+            for (let i = 0; i < elements.length; i++) {
+                let element = elements[i];
+                element.addEventListener("click", () => {
+                    this.getExtensionStorage("pixel-perfect-device", (device) => {
+                        if (device === null) {
+                            device = {};
+                        }
+                        device.width = element.getAttribute("data-pixel-perfect-width");
+                        device.height = element.getAttribute("data-pixel-perfect-height");
+                    });    
+                })
+            }
+        }
+
+        setRulers(r) {
+            let rulerButton = r.getElementById("pixel-perfect--site-dimensions");
+            rulerButton.addEventListener("click", () => {
+                console.log("TODO: set rulers");
+            });
         }
     }
 
