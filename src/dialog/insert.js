@@ -149,13 +149,9 @@ if (!document.getElementById("pixel-perfect--dialog")) {
             for (let i = 0; i < elements.length; i++) {
                 let element = elements[i];
                 element.addEventListener("click", () => {
-                    this.getExtensionStorage("pixel-perfect-device", (device) => {
-                        if (device === null) {
-                            device = {};
-                        }
-                        device.width = element.getAttribute("data-pixel-perfect-width");
-                        device.height = element.getAttribute("data-pixel-perfect-height");
-                    });    
+                    let width = element.getAttribute("data-pixel-perfect-width");
+                    let height = element.getAttribute("data-pixel-perfect-height");
+                    chrome.runtime.sendMessage({type: "resizeWindow", width: width, height: height});
                 })
             }
         }
